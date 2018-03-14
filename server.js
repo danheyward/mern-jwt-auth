@@ -17,7 +17,7 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'client', 'build')));
 
 // Do we still need this?
 app.use(function(req, res, next) {
@@ -27,5 +27,10 @@ app.use(function(req, res, next) {
 });
 
 app.use('/auth', auth);
+
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}!`)
+})
 
 module.exports = app;
